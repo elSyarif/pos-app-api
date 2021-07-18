@@ -37,7 +37,7 @@ export const createUsers = asyncHandler(async (req, res, next) => {
               email: users.email,
               avatar: users.avatar,
               roles: await Roles.findById(users.roles),
-              token : ""
+              token : generateToken(users._id)
           },
         });
     }else{
