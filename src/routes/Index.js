@@ -4,9 +4,11 @@ const routes = express()
 
 import rolesRoutes from './rolesRoutes.js'
 import permissionRoutes from './permissionRoutes.js'
+import usersRoutes from './usersRoutes.js'
 
 routes.use(rolesRoutes)
 routes.use(permissionRoutes)
+routes.use(usersRoutes)
 
 routes.use(notFound)
 routes.use(errorHandler)

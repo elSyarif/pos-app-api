@@ -1,5 +1,5 @@
 import mongoose from "mongoose"
-import Roles from "./roleModel.js";
+import bcrypt from 'bcryptjs'
 
 const userSchema = mongoose.Schema(
   {
@@ -29,11 +29,19 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       required: true,
     },
-    roles: [Roles],
+    roles: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "roles"
+    },
   },
-  { timestamp: true }
-);
+  {
+    timestamps: true,
+  });
 
+userSchema.methods.matchPassword  = async function(enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password)
+}
 
 const Users = mongoose.model("Users", userSchema);
 

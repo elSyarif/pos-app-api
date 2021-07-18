@@ -23,7 +23,9 @@ const roleSchema = mongoose.Schema({
             }
         }
     ]
-}, {timestamp : true})
+}, {
+    timestamps: true,
+  })
 
 const Roles = mongoose.model('Roles', roleSchema)
 
