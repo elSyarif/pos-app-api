@@ -8,7 +8,7 @@ import permissionRoutes from './permissionRoutes.js'
 import usersRoutes from './usersRoutes.js'
 
 routes.use(rolesRoutes)
-routes.use(protect, permit, permissionRoutes)
+routes.use(permissionRoutes)
 routes.use(usersRoutes)
 
 routes.use(notFound)

@@ -1,7 +1,8 @@
 import express from 'express'
 import multer from 'multer'
+import { admin, permit, protect } from '../middleware/authMiddleware.js';
 
-import { authUser, createUsers } from '../modules/users/usersController.js'
+import { authUser, changePassword, changeStatus, createUsers, getAvatar, getProfile, updateUser } from '../modules/users/usersController.js'
 import { EditFileName, ImageFileFilter } from '../utils/upload.js';
 
 const userRouter = express.Router()
@@ -21,7 +22,12 @@ const Upload = multer({
     }
 })
 
-userRouter.post('/users', Upload.single('avatar') ,createUsers)
+userRouter.post('/users', protect, admin, Upload.single('avatar') ,createUsers)
 userRouter.post('/users/auth', authUser)
+userRouter.get('/users/avatar/:avatar', getAvatar)
+userRouter.get('/users/profile',protect, getProfile)
+userRouter.post('/users/changePassword',protect, changePassword)
+userRouter.put('/users/:id', protect, permit, Upload.single('avatar'), updateUser)
+userRouter.put('/users/status/:id', protect, admin, changeStatus)
 
 export default userRouter
