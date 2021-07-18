@@ -1,7 +1,7 @@
 import express from 'express'
 import multer from 'multer'
 
-import { createUsers } from '../modules/users/usersController.js'
+import { authUser, createUsers } from '../modules/users/usersController.js'
 import { EditFileName, ImageFileFilter } from '../utils/upload.js';
 
 const userRouter = express.Router()
@@ -22,5 +22,6 @@ const Upload = multer({
 })
 
 userRouter.post('/users', Upload.single('avatar') ,createUsers)
+userRouter.post('/users/auth', authUser)
 
 export default userRouter
