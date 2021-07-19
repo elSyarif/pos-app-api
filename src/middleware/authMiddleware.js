@@ -11,7 +11,6 @@ export const protect = asyncHandler(async(req, res, next) =>{
 
             const decoded = jwt.verify(token, process.env.JWT_SECRET)
             const user = await Users.findById(decoded.id).select('-password')
-            
             req.user = {
                 _id : user._id,
                 name : user.name,
@@ -19,6 +18,10 @@ export const protect = asyncHandler(async(req, res, next) =>{
                 avatar: user.avatar,
                 roles : await Roles.findById({_id :user.roles}),
                 status : user.status
+            }
+            
+            req.outlet = {
+                _id : user.outlet
             }
             
             next()

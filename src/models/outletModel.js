@@ -9,7 +9,7 @@ const outletSchema = mongoose.Schema({
         type: String,
         required : true
     },
-    webSite:{
+    website:{
         type: String,
         required : true
     },

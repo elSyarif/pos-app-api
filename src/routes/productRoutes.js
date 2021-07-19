@@ -1,7 +1,7 @@
 import express from 'express'
 import multer from 'multer'
 import { admin, permit, protect } from '../middleware/authMiddleware.js';
-import { createProduct } from '../modules/products/productController.js';
+import { createProduct, getProduct } from '../modules/products/productController.js';
 import { EditFileName, ImageFileFilter } from '../utils/upload.js';
 
 const productRouter = express.Router()
@@ -23,5 +23,6 @@ const Upload = multer({
 
 productRouter.route('/product')
     .post(Upload.single('images'), createProduct)
+    .get(protect, getProduct)
 
 export default productRouter
