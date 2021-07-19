@@ -1,21 +1,21 @@
 import mongoose from 'mongoose'
 
-const categorySchema = mongoose.Schema({
+const estimateSchema = mongoose.Schema({
     outlet : {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "Outlet"
     },
     name:{
+        type : String,
+        required : true
+    },
+    description:{
         type: String,
         required: true
     },
-    images:{
-        type: String,
-        required: true
-    },
-},  { timestamps: true,})
+}, {timestamps : true})
 
-const Category = mongoose.model('Category', categorySchema)
+const Estimate = mongosse.model('Estimate', estimateSchema)
 
-export default Category
+export default Estimate

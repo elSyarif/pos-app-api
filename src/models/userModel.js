@@ -3,6 +3,11 @@ import bcrypt from 'bcryptjs'
 
 const userSchema = mongoose.Schema(
   {
+    outlet : {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: "Outlet"
+    },
     name: {
       type: String,
       require: true,
@@ -32,7 +37,7 @@ const userSchema = mongoose.Schema(
     roles: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
-      ref: "roles"
+      ref: "Roles"
     },
   },
   {

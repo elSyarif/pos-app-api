@@ -1,44 +1,69 @@
 import mongoose from 'mongoose'
 
 const productSchema = mongoose.Schema({
-    brand : {
+    outlet : {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Outlet"
+    },
+    title : {
         type: String,
-        require: true
+        required: true
     },
     model: {
         type: String,
-        require:true
+        required:true
+    },
+    slug:{
+        type:String
     },
     price: {
         type: Number,
-        require:true,
+        required:true,
         default: 0
     },
     cost: {
         type:Number,
-        require: true,
+        required: true,
+        default:0
+    },
+    stock: {
+        type: Number,
+        required: true,
         default:0
     },
     unit:{
         type: String,
-        require:true
+        required:true
     },
     images:{
         type: String,
-        require:true
+        required:true
     },
     description:{
         type: String,
-        require:true
+        required:true
     },
-    category:{
-        type: mongoose.Schema.Types.ObjectId,
-        require:true,
-        ref: 'Category'
+    promo:{
+        type: Boolean,
+        default: false
     },
+    category:[
+        {
+            name : {
+                type: String,
+                required : true
+            },
+            category : {
+                type: mongoose.Schema.Types.ObjectId,
+                required:true,
+                ref: 'Category'
+            }
+        }
+    ],
     suppliers:{
         type:mongoose.Schema.Types.ObjectId,
-        require :true,
+        required :true,
         ref: "Supplier"
     }
 }, { timestamps: true,})

@@ -3,20 +3,29 @@ import mongoose from 'mongoose'
 const supplierSchema = mongoose.Schema({
     name: {
         type: String,
-        require: true
+        required: true
     },
     email: {
         type: String,
-        require: true
+        required: true
     },
     phone :{
         type: String,
-        require: true
+        required: true
+    },
+    Person:{
+        type: String,
+        required:true
     },
     address:{
         type: String,
-        require: true
-    }
+        required: true
+    },
+    outlet : {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "Outlet"
+    },
 }, { timestamps: true,})
 
 const Supplier = mongoose.model('Supplier', supplierSchema)

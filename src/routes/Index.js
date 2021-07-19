@@ -6,10 +6,12 @@ import { protect, permit } from '../middleware/authMiddleware.js'
 import rolesRoutes from './rolesRoutes.js'
 import permissionRoutes from './permissionRoutes.js'
 import usersRoutes from './usersRoutes.js'
+import productRouter from './productRoutes.js'
 
 routes.use(rolesRoutes)
 routes.use(permissionRoutes)
 routes.use(usersRoutes)
+routes.use(productRouter)
 
 routes.use(notFound)
 routes.use(errorHandler)
