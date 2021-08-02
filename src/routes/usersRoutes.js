@@ -25,7 +25,7 @@ const Upload = multer({
 userRouter.post('/users', protect, admin, Upload.single('avatar') ,createUsers)
 userRouter.post('/users/auth', authUser)
 userRouter.get('/users/avatar/:avatar', getAvatar)
-userRouter.get('/users/profile',protect, getProfile)
+userRouter.get('/users/profile',protect,permit, getProfile)
 userRouter.post('/users/changePassword',protect, changePassword)
 userRouter.put('/users/:id', protect, permit, Upload.single('avatar'), updateUser)
 userRouter.put('/users/status/:id', protect, admin, changeStatus)

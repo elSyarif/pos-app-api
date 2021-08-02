@@ -58,6 +58,12 @@ export const authUser = asyncHandler(async(req, res, next) =>{
         const { email, password} = req.body
 
         const user = await Users.findOne({email})
+        const getRole = await Roles.findById({_id :user.roles})
+        let permission = []
+
+        for (let i = 0; i < getRole.permissions.length; i++) {
+            permission.push(getRole.permissions[i].name)
+        }
 
         if(!user.status){
             res.status(401)
@@ -77,7 +83,11 @@ export const authUser = asyncHandler(async(req, res, next) =>{
                 username: user.username,
                 email: user.email,
                 avatar: user.avatar,
-                roles: await Roles.findById(user.roles),
+                roles: {
+                    _id: getRole._id,
+                    name: getRole.name,
+                    permission: permission
+                },
                 token : generateToken(user._id)
             })
         }else{

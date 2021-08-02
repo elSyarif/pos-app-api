@@ -15,8 +15,8 @@ connectDB();
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(express.urlencoded({extended : false}))
+app.use(express.json())
 app.use(routes);
 
 const server = http.createServer(app);
@@ -27,5 +27,5 @@ io.on("connection", (socket) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`server listening on port ${PORT}!`);
+  console.log(`socket server listening on port ${PORT}!`);
 });

@@ -5,7 +5,7 @@ const permissionSchema = mongoose.Schema({
         type: String,
         require: true
     },
-    description:{
+    method:{
         type: String,
         require: true
     }

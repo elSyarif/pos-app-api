@@ -2,10 +2,10 @@ import asyncHandler from "express-async-handler";
 import Permission from "../../models/permissionModel.js";
 
 export const createPermission = asyncHandler(async(req, res, next) => {
-    const {name, description} = req.body
+    const {name, method} = req.body
     const permission = new Permission({
         name : name,
-        description : description
+        method: method
     })
 
     const createPermission = await permission.save()
@@ -27,12 +27,12 @@ export const getPermission = asyncHandler(async(req, res, next) =>{
 export const updatePermission = asyncHandler(async(req, res, next) =>{
     try {
         const id = req.params.id
-        const {name, description} = req.body
+        const {name, method} = req.body
         const permission = await Permission.findById(id)
 
         if(permission){
             permission.name = name || permission.name
-            permission.description = description || permission.description
+            permission.method = method || permission.method
 
             const update = await permission.save()
 

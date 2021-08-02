@@ -38,12 +38,12 @@ export const createRoles = asyncHandler(async (req, res, next) => {
 
     for (let i = 0; i <= permissions.length - 1; i++) {
       const getPermission = await Permission.findById({
-        _id: permissions[i].permission,
+        _id: permissions[i],
       });
 
       roles.permissions.push({
         name: getPermission.name,
-        permission: permissions[i].permission,
+        permission: permissions[i],
       });
     }
     const createRole = await roles.save();
